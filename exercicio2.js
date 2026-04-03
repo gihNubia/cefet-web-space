@@ -54,3 +54,27 @@ const imagens = [
     }
   ];
 
+let imgsEl = document.querySelector('#slide');
+let anteriorEl = document.querySelector('#anterior');
+let proximoEl = document.querySelector('#proximo');
+let descricaoEl = document.querySelector('#osiris-rex p');
+
+let indice = 0;
+const maxIndice = imagens.length - 1;
+const minIndice = 0;
+
+anteriorEl.addEventListener('click', () => atualizar(-1));
+proximoEl.addEventListener('click', () => atualizar(1));
+
+function atualizar(num) {
+  indice += num;
+  if (indice > maxIndice) {
+    indice = minIndice;
+  } 
+  else if (indice < minIndice) {
+    indice = maxIndice;
+  }
+  
+  imgsEl.src = servidorDasImagens + '/' + imagens[indice]["arquivo"];
+  descricaoEl.innerHTML = imagens[indice]["descricao"];
+}
